@@ -1,5 +1,4 @@
 ﻿@page "/Artistas"
-@using ScreenSound.Web.Services
 @inject ArtistasAPI artistasAPI
 
 <h3>Artistas</h3>
@@ -10,7 +9,6 @@
         <p>@artista.Nome</p>
     }
 }
-
 
 @code {
     private ICollection<ArtistaResponse>? artistas;
