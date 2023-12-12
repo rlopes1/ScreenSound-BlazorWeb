@@ -1,71 +1,7 @@
 ﻿@page "/CadastrarMusica"
-@inject GeneroAPI generoAPI
 
-<MudPaper Class="px-8 pt-2 pb-4 mx-12 my-8" Justify="Justify.Center">
-
-    <MudText Class="mt-8" Typo="Typo.h4">Cadastro de Música</MudText>
-
-    <MudForm>
-
-        <MudTextField Class="mt-4" T="string" Placeholder="Nome da música/canção"
-                      @bind-Value="nome"
-                      Variant="Variant.Outlined"
-                      Required="true"
-                      RequiredError="Campo obrigatório." />
-
-        <MudTextField Class="mt-4" T="string" Placeholder="Nome do artista"
-                      @bind-Value="nomeArtista"
-                      Variant="Variant.Outlined"
-                      Lines="1"
-                      Required="true"
-                      RequiredError="Campo obrigatório." />
-
-        <MudTextField Class="mt-4" T="string" Placeholder="Ano de lançamento"
-                      @bind-Value="anoLancamento"
-                      Variant="Variant.Outlined"
-                      Lines="1"
-                      Required="true"
-                      RequiredError="Campo obrigatório." />
-
-       <MudSelect Class="mt-4" T="string" Label="Gêneros" Variant="Variant.Filled" AnchorOrigin="Origin.BottomCenter" onchange="">
-           @if (Generos is not null)
-            {
-                @foreach (var genero in Generos)
-                {
-                    <MudSelectItem Value="genero.Nome"/>
-                }
-            }
-        </MudSelect>
-
-        <div class="d-flex align-center justify-space-between mt-4">
-            <MudButton Variant="Variant.Filled"
-                       Color="Color.Primary"                
-                       Class="ml-auto"
-                       >
-                Cadastrar
-            </MudButton>
-            <MudButton Variant="Variant.Filled"
-                       Color="Color.Info"
-                       Class="ml-3"
-                       >
-                Voltar
-            </MudButton>
-        </div>
-
-    </MudForm>
-
-</MudPaper>
-
+<h3>Cadastro de Música</h3>
 
 @code {
-    private string? nome;
-    private string? nomeArtista;
-    private string? anoLancamento;
-    private ICollection<GeneroResponse>? Generos{ get; set; }
-
-    protected override async Task OnInitializedAsync()
-    {
-        Generos = await generoAPI.GetGenerosAsync();
-    }
-   
+      
 }
