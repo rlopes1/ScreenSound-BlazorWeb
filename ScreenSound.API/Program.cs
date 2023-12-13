@@ -10,6 +10,12 @@ using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Host.ConfigureAppConfiguration(config =>
+{
+    var settings = config.Build();
+    config.AddAzureAppConfiguration("Endpoint=https://screensound-configuration.azconfig.io;Id=3HVQ;Secret=wF97RuK+avtFwg6iHERM8yeIDBJ2joABSih75njg7N4=");
+});
+
 builder.Services.AddDbContext<ScreenSoundContext>((options) => {
     options
             .UseSqlServer(builder.Configuration["ConnectionStrings:ScreenSoundDB"])
