@@ -1,0 +1,30 @@
+﻿@page "/Artistas"
+@using ScreenSound.Web.Response
+@using ScreenSound.Web.Services
+@using System.Collections.ObjectModel
+@inject ArtistaAPI artistaAPI
+
+
+<h3>Artistas</h3>
+<h4>@Mensagem</h4>
+
+@foreach (var item in listaArtista)
+{
+    <h1>@item.Nome</h1>
+}
+
+@code {
+    private ICollection<ArtistaResponse>? listaArtista;
+
+
+    public string Mensagem { get; set; } = "Olá mundo!";
+
+    protected override async Task  OnInitializedAsync()
+    {
+
+        listaArtista = await artistaAPI.GetArtistasAsync();
+
+        
+    }
+
+}
