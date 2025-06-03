@@ -47,6 +47,7 @@
 @code {
     private string? nome;
     private string? biografia;
+    private string? FotoPerfil;
     [Parameter]
     public string? NomeArtista{ get; set; }
     public ArtistaResponse? Artista { get; set; }
@@ -69,7 +70,7 @@
 
     private async Task Atualizar()
     {
-        ArtistaRequestEdit artistaRequestEdit = new(Artista.Id, nome, biografia);
+        ArtistaRequestEdit artistaRequestEdit = new(Artista.Id, nome, biografia, FotoPerfil);
 
         await artistasAPI.AtualizarArtistaAsync(artistaRequestEdit);
         navigationManager.NavigateTo("/Artistas");
