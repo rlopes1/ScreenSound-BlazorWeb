@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Design;
 using Microsoft.Extensions.Options;
 using ScreenSound.API.Endpoints;
 using ScreenSound.Banco;
@@ -9,6 +10,12 @@ using System.Data.SqlTypes;
 using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Host.ConfigureAppConfiguration(config =>
+{
+    var settings = config.Build();
+    config.AddAzureAppConfiguration("Endpoint=https://screensound-configuration3.azconfig.io;Id=Lh6P;Secret=D2cb1Sr4d9oDCTRt9TuCszwUeVNFJ8gWkJJzA837acz8pp6iDLJqJQQJ99BFACZoyfiOaAthAAACAZAC13cL");
+});
 
 builder.Services.AddDbContext<ScreenSoundContext>((options) => {
     options

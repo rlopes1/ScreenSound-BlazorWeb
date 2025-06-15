@@ -15,6 +15,13 @@ public static class MusicasExtensions
         app.MapGet("/Musicas", ([FromServices] DAL<Musica> dal) =>
         {
             var musicaList = dal.Listar();
+
+            // Diagnóstico: Verifique o carregamento do Artista
+            foreach (var musica in musicaList)
+            {
+                Console.WriteLine($"Musica: {musica.Nome}, ArtistaId: {musica.ArtistaId}, Artista: {(musica.Artista != null ? musica.Artista.Nome : "null")}");
+            }
+
             if (musicaList is null)
             {
                 return Results.NotFound();
@@ -99,7 +106,8 @@ public static class MusicasExtensions
         return new Genero() { Nome = genero.Nome, Descricao = genero.Descricao };
     }
 
-    private static ICollection<MusicaResponse> EntityListToResponseList(IEnumerable<Musica> musicaList)
+
+    private static ICollection<MusicaResponse> EntityListToResponseList(IEnumerable<Musica>? musicaList)
     {
         return musicaList.Select(a => EntityToResponse(a)).ToList();
     }
